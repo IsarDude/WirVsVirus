@@ -1,0 +1,106 @@
+package pgdp.intro;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Server {
+
+	public static String IP = "127.0.0.1";
+	public static int PORT = 1234;
+	private static boolean running;
+
+	public static Path path = Paths.get("C:\\Users\\Johannes\\Desktop\\databaseHackaton.csv");
+	public static ConcurrentHashMap<Integer, List<Store>> map;
+
+	public static void main(String[] args) {
+		Server server = new Server();
+		System.out.println(server.getStoresByPostcode(81669).size());
+
+	}
+
+	public Server() {
+		running = true;
+		List<Store> list = new LinkedList<Store>();
+		map = new ConcurrentHashMap<Integer, List<Store>>();
+		try {
+
+			Consumer<String> mapper = x -> {
+				Stream.of(x).map(next -> next.split("\\|")).forEach(str -> {
+
+					try {
+						list.add(new Store(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8],
+								str[9], str[10], str[11], str[12], str[13], str[14], str[15], str[16], str[17], str[18],
+								str[19], str[20], str[21], str[22], str[23], str[24], str[25],
+								str[26].replace(',', '.'), str[27].replace(',', '.')));
+
+					} catch (NumberFormatException ignored) {
+						System.out.println(ignored.toString());
+					}
+				});
+			};
+			BufferedReader bufferedReader = Files.newBufferedReader(path, Charset.forName("UTF-8"));
+			bufferedReader.lines().forEach(mapper);
+			bufferedReader.close();
+			map = (ConcurrentHashMap<Integer, List<Store>>) list.stream()
+					.collect(Collectors.groupingByConcurrent(Store::getPlz));
+
+			try (ServerSocket serverSock = new ServerSocket(PORT);) {
+
+
+
+				//Serverloop
+				while(running) {
+
+					Socket sock = serverSock.accept();
+
+					BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+					int plzRequest = Integer.parseInt(in.readLine());
+
+					List<Store> listRequest = getStoresByPostcode(plzRequest);
+
+					OutputStream outputStream = sock.getOutputStream();
+
+					ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
+					objectOutputStream.writeObject(listRequest);
+
+
+					sock.close();
+
+
+				}
+
+
+			} catch (IOException e1) {
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void closeServer() {
+		running = false;
+	}
+
+	public List<Store> getStoresByPostcode(int code) {
+		return map.entrySet().stream().filter(x -> x.getKey() == code).map(x -> x.getValue()).findAny().orElse(null);
+	}
+}

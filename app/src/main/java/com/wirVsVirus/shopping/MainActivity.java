@@ -74,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
             mylistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    
+                    Intent storeIntent = new Intent(getApplicationContext(),StoreActivity.class);
+                    storeIntent.putExtra("storeObj",list.get(position));
+                    startActivity(storeIntent);
                 }
             });
         } catch(NumberFormatException | InterruptedException nfe){

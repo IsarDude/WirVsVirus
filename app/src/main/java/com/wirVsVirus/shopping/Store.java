@@ -87,6 +87,26 @@ public class Store implements Serializable{
         return claimed;
     }
 
+    public String getMarkttyp() {
+        return markttyp;
+    }
+
+    public String getOrt() {
+        return ort;
+    }
+
+    public String getStrasse() {
+        return strasse;
+    }
+
+    public String getHausnr() {
+        return hausnr;
+    }
+
+    public int getActivity() {
+        return activity;
+    }
+
     public void setActivity(int i) {
         this.activity = i;
     }

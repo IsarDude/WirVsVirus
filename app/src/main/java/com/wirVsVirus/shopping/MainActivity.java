@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toLogin = findViewById(R.id.toLogin);
         searchStores = findViewById(R.id.search);
-        plz = findViewById(R.id.postleitzahl);
+        plz = findViewById(R.id.plz);
         mylistView  = findViewById(R.id.listView);
         myContext=this;
     }

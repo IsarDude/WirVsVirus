@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void jumpToLogin(View view){
-
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 

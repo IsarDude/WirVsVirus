@@ -1,6 +1,7 @@
 package com.wirVsVirus.shopping;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.nfc.Tag;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,13 @@ public class StoreListAdapter extends ArrayAdapter<Store> {
         marketName.setText(name);
         marketAddress.setText(address);
         marketNumber.setText(number);
-        marketStatus.setText(""+status);
+        if(status ==0){
+            marketStatus.setBackgroundColor(Color.GREEN);
+        }else if(status == 0){
+            marketStatus.setBackgroundColor(Color.YELLOW);
+        }else{
+            marketStatus.setBackgroundColor(Color.RED);
+        }
 
         return convertView;
 

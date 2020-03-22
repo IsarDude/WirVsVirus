@@ -1,7 +1,8 @@
+package pgdp.intro;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -25,6 +26,7 @@ public class Server extends Thread {
 
 	public static Path path = Paths.get("C:\\Users\\Johannes\\Desktop\\databaseHackaton.csv");
 	public static ConcurrentHashMap<Integer, List<Store>> map;
+	public static List<Store> list;
 
 	public static void main(String[] args) {
 		Server server = new Server();
@@ -33,7 +35,7 @@ public class Server extends Thread {
 
 	public Server() {
 		running = true;
-		List<Store> list = new LinkedList<Store>();
+		list = new LinkedList<Store>();
 		map = new ConcurrentHashMap<Integer, List<Store>>();
 		try {
 
@@ -75,22 +77,32 @@ public class Server extends Thread {
 				System.out.println("test");
 
 				BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-				int plzRequest = Integer.parseInt(in.readLine());
-
-				List<Store> listRequest = getStoresByPostcode(plzRequest);
-
+				
+				String input = in.readLine();
+				
 				OutputStream outputStream = sock.getOutputStream();
 
 				PrintWriter printWriter = new PrintWriter(outputStream, true);
 				
-				try {
-				listRequest.stream().forEach(x->{
-					printWriter.println(x.toString());
-				});
-				} catch (NullPointerException e) {
-					e.toString();
-					System.out.println("kein markt bei plz");
-				}
+				if(input.startsWith("plz")) {
+					int plzRequest = Integer.parseInt(input.substring(3));
+					List<Store> listRequest = getStoresByPostcode(plzRequest);
+					try {
+						listRequest.stream().forEach(x->{
+							printWriter.println(x.toString());
+						});
+						} catch (NullPointerException e) {
+							e.toString();
+							System.out.println("kein markt bei plz");
+						}
+				} else {
+					String[] arr = input.split("//|");
+					String key = arr[0];
+					String name = arr[1];
+					
+					
+				}			
+				
 				sock.close();
 
 			}
@@ -100,6 +112,10 @@ public class Server extends Thread {
 
 	}
 
+	public Store getStore(int id) {
+		return list.get(id);
+	}
+	
 	public void closeServer() {
 		running = false;
 		Client c = new Client();
@@ -109,6 +125,10 @@ public class Server extends Thread {
 
 	public List<Store> getStoresByPostcode(int code) {
 		System.out.println(code);
-		return map.entrySet().stream().filter(x -> x.getKey() == code).map(x -> x.getValue()).findAny().orElse(null);
+		java.util.Random rd = new java.util.Random();
+		List<Store> list = map.entrySet().stream().filter(x -> x.getKey() == code).map(x -> x.getValue()).findAny().orElse(null);
+		list.forEach(x->x.setActivity(rd.nextInt(3)));
+		System.out.println(rd.nextInt(3));
+		return list;
 	}
 }

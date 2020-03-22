@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/backgroundshopping"
     tools:context=".SplashActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -17,10 +18,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="99dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginBottom="153dp"
+        android:layout_marginBottom="150dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:paddingBottom="40dp"
-            android:src="@drawable/pngwave"
+            android:src="@drawable/warenkorb"
 
 
             />
@@ -44,14 +45,32 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <ProgressBar
-            android:id="@+id/splashProgress"
-            style="@android:style/Widget.ProgressBar.Large"
-            android:layout_width="136dp"
-            android:layout_height="61dp"
-            android:layout_marginTop="50dp"
-            android:background="@color/colorAccent" />
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="683dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginRight="87dp"
+        android:layout_marginBottom="21dp"
+        android:shadowColor="#3C3F41"
+        android:shadowDx="112.0"
+        android:shadowDy="112.0"
+        android:shadowRadius="122.0"
+        android:text="powered by gb consite GmbH"
+        android:textColor="#3C3F41"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#303030"
+        android:textSize="18sp" />
 
 </RelativeLayout>

@@ -16,6 +16,9 @@ public class User {
     private String phone;
     private Socket sock;
 
+    private String IP = "12";
+    private int PORT = 132;
+
     public User() {
 
     }

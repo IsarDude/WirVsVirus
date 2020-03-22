@@ -4,15 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E1F5FE"
     tools:context=".MainActivity">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/LinearLayoutTop"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
+            android:textSize="20sp"
+            android:textColor="#0097A7"
+            android:text="Willkommen bei ShoppingTime" />
+
+        <Button
+            android:id="@+id/toLogin"
+            android:background="#64B5F6"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:onClick="jumpToLogin"
+            android:text="Login für Betreiber" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/AskForInput"
+        android:textColor="#0097A7"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/LinearLayoutTop"
+        android:layout_width="wrap_content"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="Bitte Postleitzahl eingeben:" />
+
+
+
+
+    <LinearLayout
+        android:id="@+id/Layout_Input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AskForInput"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:inputType="textPersonName"
+            android:id="@+id/plz"/>
+
+        <Button
+            android:id="@+id/search"
+            android:background="#64B5F6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="searchForStores"
+            android:layout_marginRight="15dp"
+            android:text="Suchen" />
+
+    </LinearLayout>
+
     <ListView
+        android:id="@+id/listView"
+        android:layout_below="@+id/Layout_Input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/listView"/>
+        />
 
 
 </RelativeLayout>

@@ -17,40 +17,62 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity" ;
+   private static final String TAG = "MainActivity" ;
     TextView toLogin;
-    ImageButton searchStores;
+    Button searchStores;
     EditText plz;
     private ListView mylistView;
     Context myContext;
+    FirebaseDatabase database;
+    public static Path path = Paths.get("C:\\Users\\David\\Desktop\\databaseHackaton.csv");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG,"onCreate: Started");
         setContentView(R.layout.activity_main);
         toLogin = findViewById(R.id.toLogin);
         searchStores = findViewById(R.id.search);
         plz = findViewById(R.id.plz);
-        mylistView  = findViewById(R.id.listView);
-        myContext=this;
+        mylistView = findViewById(R.id.listView);
+        myContext = this;
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("Store");
+        boolean running = true;
+        LinkedList<Store> list = new LinkedList<Store>();
+
+
+
     }
 
-    public void jumpToLogin(View view){
+        public void jumpToLogin(View view){
         startActivity(new Intent(this, LoginActivity.class));
 
     }
     private ArrayList<Store> list;
+
     public void searchForStores(View view){
 
         try{
             Thread thread = new Thread(new Runnable() {
 
-                @RequiresApi(api = Build.VERSION_CODES.N)
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void run() {
                     try  {

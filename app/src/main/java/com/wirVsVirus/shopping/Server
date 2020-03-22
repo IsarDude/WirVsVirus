@@ -125,10 +125,7 @@ public class Server extends Thread {
 
 	public List<Store> getStoresByPostcode(int code) {
 		System.out.println(code);
-		java.util.Random rd = new java.util.Random();
 		List<Store> list = map.entrySet().stream().filter(x -> x.getKey() == code).map(x -> x.getValue()).findAny().orElse(null);
-		list.forEach(x->x.setActivity(rd.nextInt(3)));
-		System.out.println(rd.nextInt(3));
 		return list;
 	}
 }

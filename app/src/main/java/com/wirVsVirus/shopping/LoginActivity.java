@@ -3,7 +3,6 @@ package com.wirVsVirus.shopping;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+ public class LoginActivity extends AppCompatActivity {
 
         EditText emailLogin,passwordLogin;
         Button logIn;
@@ -70,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(), "Login erfolgreich", Toast.LENGTH_SHORT).show();
+                        System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                         startActivity(new Intent(getApplicationContext(),StaffActivity.class));
 

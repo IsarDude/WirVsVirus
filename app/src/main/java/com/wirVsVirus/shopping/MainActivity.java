@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -70,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
             thread.join();
             StoreListAdapter adapter = new StoreListAdapter( myContext, R.layout.activity_list_layout, list);
             mylistView.setAdapter(adapter);
+            mylistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    
+                }
+            });
         } catch(NumberFormatException | InterruptedException nfe){
             System.out.println("fail");
         }

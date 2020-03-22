@@ -34,7 +34,7 @@ public class Store implements Serializable{
     private final double x;
     private final double y;
 
-    private int activity = 0;
+    private int activity = -1;
     private boolean claimed = false;
     private User owner;
 

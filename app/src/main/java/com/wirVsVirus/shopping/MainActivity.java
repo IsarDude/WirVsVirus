@@ -1,8 +1,10 @@
 package com.wirVsVirus.shopping;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             Thread thread = new Thread(new Runnable() {
 
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void run() {
                     try  {
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Client client = new Client();
                         List<Store> list = client.requestStores(postleitzahl);
-                        System.out.println(list.get(0).getPlz());
+                        System.out.println(list.size());
                         //throws NPE wenn keine Läden bei PLZ -> Fehlermeldung / evtl. Suche nach anderen PLz
                     } catch (Exception e) {
                         e.printStackTrace();

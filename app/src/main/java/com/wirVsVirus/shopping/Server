@@ -1,10 +1,9 @@
-package pgdp.intro;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
@@ -18,10 +17,10 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Server {
+public class Server extends Thread {
 
-	public static String IP = "127.0.0.1";
-	public static int PORT = 1234;
+	public static String IP = "10.0.2.2";
+	public static int PORT = 34350;
 	private static boolean running;
 
 	public static Path path = Paths.get("C:\\Users\\Johannes\\Desktop\\databaseHackaton.csv");
@@ -29,8 +28,7 @@ public class Server {
 
 	public static void main(String[] args) {
 		Server server = new Server();
-		System.out.println(server.getStoresByPostcode(81669).size());
-
+		server.start();
 	}
 
 	public Server() {
@@ -53,42 +51,12 @@ public class Server {
 					}
 				});
 			};
+			
 			BufferedReader bufferedReader = Files.newBufferedReader(path, Charset.forName("UTF-8"));
 			bufferedReader.lines().forEach(mapper);
 			bufferedReader.close();
 			map = (ConcurrentHashMap<Integer, List<Store>>) list.stream()
 					.collect(Collectors.groupingByConcurrent(Store::getPlz));
-
-			try (ServerSocket serverSock = new ServerSocket(PORT);) {
-
-
-
-				//Serverloop
-				while(running) {
-
-					Socket sock = serverSock.accept();
-
-					BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-					int plzRequest = Integer.parseInt(in.readLine());
-
-					List<Store> listRequest = getStoresByPostcode(plzRequest);
-
-					OutputStream outputStream = sock.getOutputStream();
-
-					ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-
-					objectOutputStream.writeObject(listRequest);
-
-
-					sock.close();
-
-
-				}
-
-
-			} catch (IOException e1) {
-
-			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -96,11 +64,51 @@ public class Server {
 
 	}
 
+	@Override
+	public void run() {
+		try (ServerSocket serverSock = new ServerSocket(PORT);) {
+			System.out.println("test");
+			// Serverloop
+			while (running) {
+				serverSock.setSoTimeout(1000000);
+				Socket sock = serverSock.accept();
+				System.out.println("test");
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+				int plzRequest = Integer.parseInt(in.readLine());
+
+				List<Store> listRequest = getStoresByPostcode(plzRequest);
+
+				OutputStream outputStream = sock.getOutputStream();
+
+				PrintWriter printWriter = new PrintWriter(outputStream, true);
+				
+				try {
+				listRequest.stream().forEach(x->{
+					printWriter.println(x.toString());
+				});
+				} catch (NullPointerException e) {
+					e.toString();
+					System.out.println("kein markt bei plz");
+				}
+				sock.close();
+
+			}
+		} catch (IOException e1) {
+			System.out.println(e1.toString());
+		}
+
+	}
+
 	public void closeServer() {
 		running = false;
+		Client c = new Client();
+		c.requestStores(0);
+		c.closeCommunication();
 	}
 
 	public List<Store> getStoresByPostcode(int code) {
+		System.out.println(code);
 		return map.entrySet().stream().filter(x -> x.getKey() == code).map(x -> x.getValue()).findAny().orElse(null);
 	}
 }

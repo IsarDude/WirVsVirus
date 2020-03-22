@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundshopping"
+    android:background="#E1F5FE"
     tools:context=".StoreActivity">
 
 
@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:text="REWE Ziegelstrasse"
-            android:textColor="#FFFFFF"
+            android:textColor="#3F51B5"
             android:textSize="30sp"
             android:textStyle="bold|italic" />
 
@@ -44,7 +44,7 @@
                 android:layout_marginLeft="60dp"
                 android:layout_weight="1"
                 android:text=" Öffnungszeiten: \n Mo - Sa 8-22 Uhr \n\n Seniorenzeiten \n Mo-Fr 12-13 Uhr"
-                android:textColor="#FFFFFF" />
+                android:textColor="#3F51B5" />
 
             <TextView
                 android:id="@+id/storeAddress"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text=" Addresse: \n Ziegelstr. 232 \n 23556 Lübeck"
-                android:textColor="#FFFFFF" />
+                android:textColor="#3F51B5" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_weight="1"
-                android:text="Auslastung:"
-                android:textColor="#FFFFFF" />
+                android:text="Auslastung:" />
 
             <Button
                 android:id="@+id/colorViewNow"
@@ -99,8 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_weight="0.93"
-                android:text="Auslastung \nin 2 Stunden:"
-                android:textColor="#FFFFFF" />
+                android:text="Auslastung \nin 2 Stunden:" />
 
             <Button
                 android:id="@+id/colorViewLater"
@@ -125,7 +123,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Planen Sie Ihren Einkauf in diesem Markt:"
-            android:textColor="#FFFFFF"
+            android:textColor="#3F51B5"
             android:textSize="17sp" />
 
         <EditText
@@ -134,9 +132,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:hint="Datum"
-            android:inputType="date"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/time"
@@ -144,9 +140,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:hint="Uhrzeit"
-            android:inputType="time"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:inputType="time" />
 
 
         <Button
@@ -154,13 +148,13 @@
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
+            android:background="#64B5F6"
             android:onClick="toPlan"
-            android:text="Jetzt planen"
-            android:textColor="#FFFFFF" />
+            android:text="Jetzt planen" />
 
 
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

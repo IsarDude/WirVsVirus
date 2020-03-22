@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundshopping"
+    android:background="#E1F5FE"
     tools:context=".MainActivity">
 
 
+
     <LinearLayout
-        android:id="@+id/LinearLayoutTop"
         android:layout_width="match_parent"
+        android:id="@+id/LinearLayoutTop"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="1dp"
@@ -23,36 +24,36 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_weight="2"
-            android:text="Willkommen bei ShoppingTime"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#0097A7"
+            android:text="Willkommen bei ShoppingTime" />
 
         <Button
             android:id="@+id/toLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="#64B5F6"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:background="@android:color/transparent"
             android:onClick="jumpToLogin"
-            android:text="Login für Betreiber"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:text="Login für Betreiber" />
 
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/AskForInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/LinearLayoutTop"
-        android:layout_marginLeft="15dp"
+        android:textColor="#0097A7"
         android:layout_marginTop="50dp"
-        android:text="Bitte Postleitzahl eingeben:"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/LinearLayoutTop"
+        android:layout_width="wrap_content"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="Bitte Postleitzahl eingeben:" />
+
+
 
 
     <LinearLayout
@@ -63,38 +64,33 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/plz"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textColorLink="#FFFFFF" />
-
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="100dp"
             android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
+            android:layout_marginLeft="15dp"
+            android:inputType="textPersonName"
+            android:id="@+id/plz"/>
+
+        <Button
+            android:id="@+id/search"
+            android:background="#64B5F6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="searchForStores"
-            android:tint="#FFFFFF"
-            app:srcCompat="@android:drawable/ic_menu_search" />
+            android:layout_marginRight="15dp"
+            android:text="Suchen" />
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="502dp"
         android:layout_below="@+id/Layout_Input"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="5dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 
 </RelativeLayout>
+

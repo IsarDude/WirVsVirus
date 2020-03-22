@@ -7,15 +7,13 @@
 
 
     <TextView
-        android:id="@+id/name"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="TextView1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_weight="66.6"
-        android:gravity="center"
-        android:text="TextView1"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF" />
+        android:id="@+id/name"
+        android:layout_weight="66.6"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,23 +22,19 @@
         android:layout_weight="43">
 
         <TextView
-            android:id="@+id/street"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
             android:gravity="center"
             android:text="TextView2"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/number"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_below="@+id/textView2"
+            android:id="@+id/street"/>
+
+        <TextView
             android:gravity="center"
             android:text="TextView3"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/number"
+            android:layout_below="@+id/textView2"/>
     </LinearLayout>
 
     <TextView

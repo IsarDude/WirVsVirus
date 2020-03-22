@@ -17,7 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText emailRegister,passwordRegister;
+    EditText emailRegister,passwordRegister,storeStreet,storeNumber,storePlz;
+
     Button registrieren;
     FirebaseAuth firebaseAuth;
 
@@ -30,6 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
         emailRegister = findViewById(R.id.emailRegister);
         passwordRegister = findViewById(R.id.passwordRegister);
         registrieren = findViewById(R.id.btnSignUp);
+        storeNumber= findViewById(R.id.nr);
+        storePlz=findViewById(R.id.plz);
+        storeStreet=findViewById(R.id.street);
 
 
     }
@@ -37,6 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
     public void register(View view){
         String email = emailRegister.getText().toString();
         String password = passwordRegister.getText().toString();
+        String street = storeStreet.getText().toString();
+        String nr = storeNumber.getText().toString();
+        String plz = storePlz.getText().toString();
         if(email.isEmpty()){
             emailRegister.setError("Geben Sie bitte eine Email an");
             emailRegister.requestFocus();

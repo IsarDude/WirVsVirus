@@ -32,7 +32,7 @@ public class User {
     public void setActivity(int status) {
         if(store!=null) {
             try {
-                sock = new Socket(IP, PORT);
+                //sock = new Socket(IP, PORT);
                 PrintWriter socketOut = new PrintWriter(sock.getOutputStream(), true);
                 socketOut.println(store.getIndex());
                 socketOut.println(status);

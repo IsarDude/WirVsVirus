@@ -69,7 +69,7 @@ import com.google.firebase.auth.FirebaseAuth;
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(), "Login erfolgreich", Toast.LENGTH_SHORT).show();
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                         startActivity(new Intent(getApplicationContext(),StaffActivity.class));
 
                     }

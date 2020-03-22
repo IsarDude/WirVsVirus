@@ -8,9 +8,9 @@ import java.net.Socket;
 import java.util.List;
 
 public class Client {
-    public static String IP = "127.0.0.1";
-    public static int PORT = 1234;
-    Socket sock;
+    public static String IP = "10.0.2.2";
+    public static int PORT = 25731;
+    private Socket sock;
 
 
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Client {
         try {
             sock = new Socket(IP, PORT);
         } catch (IOException e) {
-
+            System.out.println("fail io socket");
         }
     }
 
@@ -38,6 +38,7 @@ public class Client {
 
 
             ObjectInputStream objectOutputStream = new ObjectInputStream(inputStream);
+
 
             return (List<Store>) objectOutputStream.readObject();
 

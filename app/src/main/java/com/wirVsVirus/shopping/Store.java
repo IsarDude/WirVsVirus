@@ -1,5 +1,6 @@
 package com.wirVsVirus.shopping;
 
+
 import java.io.Serializable;
 
 public class Store implements Serializable{
@@ -33,6 +34,7 @@ public class Store implements Serializable{
     private final double x;
     private final double y;
 
+    private int activity = 0;
     private boolean claimed = false;
     private User owner;
 
@@ -47,7 +49,6 @@ public class Store implements Serializable{
         partnerfirma = string3;
         regie = string4;
         markttyp = string5;
-
         geschaeftsart = string6;
         vkf = string7;
         mitarbeiter = string8;
@@ -85,5 +86,15 @@ public class Store implements Serializable{
     public boolean isClaimed() {
         return claimed;
     }
+
+    public void setActivity(int i) {
+        this.activity = i;
+    }
+
+    public void claim(User user) {
+        claimed = true;
+    }
 }
+
+
 

@@ -46,7 +46,7 @@ public class StoreListAdapter extends ArrayAdapter<Store> {
         marketNumber.setText(number);
         if(status ==0){
             marketStatus.setBackgroundColor(Color.GREEN);
-        }else if(status == 0){
+        }else if(status == 1){
             marketStatus.setBackgroundColor(Color.YELLOW);
         }else{
             marketStatus.setBackgroundColor(Color.RED);

@@ -33,21 +33,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toLogin = findViewById(R.id.toLogin);
         searchStores = findViewById(R.id.search);
-        plz = findViewById(R.id.plz);
+        plz = findViewById(R.id.postleitzahl);
         mylistView  = findViewById(R.id.listView);
         myContext=this;
-
-        //test
-
-
     }
 
     public void jumpToLogin(View view){
         startActivity(new Intent(this, LoginActivity.class));
 
     }
-
+    private ArrayList<Store> list;
     public void searchForStores(View view){
+
         try{
             Thread thread = new Thread(new Runnable() {
 
@@ -58,12 +55,11 @@ public class MainActivity extends AppCompatActivity {
                         int postleitzahl = Integer.parseInt(plz.getText().toString());
 
                         Client client = new Client();
-                        ArrayList<Store> list = (ArrayList<Store>)client.requestStores(postleitzahl);
+                        list = (ArrayList<Store>)client.requestStores(postleitzahl);
                         System.out.println(list.size());
                         //throws NPE wenn keine Läden bei PLZ -> Fehlermeldung / evtl. Suche nach anderen PLz
 
-                        StoreListAdapter adapter = new StoreListAdapter( myContext, R.layout.activity_list_layout, list);
-                        mylistView.setAdapter(adapter);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -71,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
             });
 
             thread.start();
-
-        } catch(NumberFormatException nfe){
+            thread.join();
+            StoreListAdapter adapter = new StoreListAdapter( myContext, R.layout.activity_list_layout, list);
+            mylistView.setAdapter(adapter);
+        } catch(NumberFormatException | InterruptedException nfe){
             System.out.println("fail");
         }
 

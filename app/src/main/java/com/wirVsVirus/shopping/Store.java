@@ -75,6 +75,7 @@ public class Store implements Serializable{
 
     }
 
+
     public int getPlz() {
         return plz;
     }

@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         plz = findViewById(R.id.plz);
         mylistView  = findViewById(R.id.listView);
         myContext=this;
+
+        //test
+
+
     }
 
     public void jumpToLogin(View view){

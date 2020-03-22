@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
             passwordRegister.setError("Geben Sie bitte ein Passwort an");
             passwordRegister.requestFocus();
         }
+
         else{
             firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -52,17 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(RegisterActivity.this, "Registrierung erfolgreich", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),StaffActivity.class));
-                    }
-                    else{
+                    } else{
                         Toast.makeText(RegisterActivity.this, "Registrierung fehlgeschlagen", Toast.LENGTH_SHORT).show();
                     }
                 }
 
 
             });
-            if(firebaseAuth.getCurrentUser() != null){
-                Toast.makeText(this, "User bereits reigistriert", Toast.LENGTH_SHORT).show();
-            }
+
 
         }
 

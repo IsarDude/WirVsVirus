@@ -30,23 +30,24 @@ public class User {
     }
 
     public void setActivity(int status) {
-        try {
-             sock = new Socket(IP, PORT);
-             PrintWriter socketOut = new PrintWriter(sock.getOutputStream(), true);
-            socketOut.println(email);
-            socketOut.println(name);
-            socketOut.println(status);
-            socketOut.close();
-            DataInputStream serverAnswer = new DataInputStream(sock.getInputStream());
-            int answer = (int) serverAnswer.read();
-            if(answer==1) {
-                store.setActivity(status);
-            }else{
-                System.err.println("Server error!");
-                throw new IOException();
+        if(store!=null) {
+            try {
+                sock = new Socket(IP, PORT);
+                PrintWriter socketOut = new PrintWriter(sock.getOutputStream(), true);
+                socketOut.println(store.getIndex());
+                socketOut.println(status);
+                socketOut.close();
+                DataInputStream serverAnswer = new DataInputStream(sock.getInputStream());
+                int answer = (int) serverAnswer.read();
+                if (answer == 1) {
+                    store.setActivity(status);
+                } else {
+                    System.err.println("Server error!");
+                    throw new IOException();
+                }
+            } catch (IOException e) {
+                System.out.println(e.toString());
             }
-        } catch (IOException e) {
-            System.out.println(e.toString());
         }
     }
 

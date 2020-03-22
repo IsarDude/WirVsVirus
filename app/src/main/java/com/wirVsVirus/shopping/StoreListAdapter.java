@@ -43,7 +43,7 @@ public class StoreListAdapter extends ArrayAdapter<Store> {
         marketName.setText(name);
         marketAddress.setText(address);
         marketNumber.setText(number);
-        marketStatus.setText(status);
+        marketStatus.setText(""+status);
 
         return convertView;
 

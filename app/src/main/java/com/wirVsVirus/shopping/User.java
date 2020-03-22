@@ -1,6 +1,12 @@
 package com.wirVsVirus.shopping;
 
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+
 
 public class User {
 
@@ -8,6 +14,7 @@ public class User {
     private String email;
     private String name;
     private String phone;
+    private Socket sock;
 
     public User() {
 
@@ -22,9 +29,27 @@ public class User {
         return false;
     }
 
-    public void setActivity(int i) {
-        store.setActivity(i);
+    public void setActivity(int status) {
+        try {
+             sock = new Socket(IP, PORT);
+             PrintWriter socketOut = new PrintWriter(sock.getOutputStream(), true);
+            socketOut.println(email);
+            socketOut.println(name);
+            socketOut.println(status);
+            socketOut.close();
+            DataInputStream serverAnswer = new DataInputStream(sock.getInputStream());
+            int answer = (int) serverAnswer.read();
+            if(answer==1) {
+                store.setActivity(status);
+            }else{
+                System.err.println("Server error!");
+                throw new IOException();
+            }
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     }
+
 
 
 }

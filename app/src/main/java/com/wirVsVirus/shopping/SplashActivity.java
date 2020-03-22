@@ -18,8 +18,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        splashProgress = findViewById(R.id.splashProgress);
-        playProgress();
+
+        //splashProgress = findViewById(R.id.splashProgress);
+        //playProgress();
 
 
         new Handler().postDelayed(new Runnable() {

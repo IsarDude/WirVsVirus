@@ -46,7 +46,7 @@ public class Store implements Serializable{
                  String string7, String string8, String string9, String string10, String string11, String string12,
                  String string13, String string14, String string15, String string16, String string17, String string18,
                  String string19, String string20, String string21, String string22, String string23, String string24,
-                 String string25, String string26, String string27, String string28) {
+                 String string25, String string26, String string27, String string28, String string29) {
 
         zentrale = string;
         region = string2;
@@ -76,6 +76,7 @@ public class Store implements Serializable{
         anzahl_von_verwaltung = string26;
         x = Double.parseDouble(string27);
         y = Double.parseDouble(string28);
+        activity = Integer.parseInt(string29);
 
     }
 

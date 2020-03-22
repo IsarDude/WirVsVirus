@@ -34,9 +34,13 @@ public class StoreActivity extends AppCompatActivity {
         time = findViewById(R.id.time);
         plan = findViewById(R.id.plan);
 
-        Store thisStore = (Store) getIntent().getSerializableExtra("StoreObj");
-        storeName.setText(thisStore.getMarkttyp());
-        storeAddress.setText("Addresse: \n" + thisStore.getStrasse() + " " +  thisStore.getHausnr() + "\n" + thisStore.getPlz() + " " + thisStore.getOrt());
+        Store thisStore = (Store) getIntent().getSerializableExtra("storeObj");
+        try {
+            storeName.setText(thisStore.getMarkttyp());
+            storeAddress.setText("Addresse: \n" + thisStore.getStrasse() + " " + thisStore.getHausnr() + "\n" + thisStore.getPlz() + " " + thisStore.getOrt());
+        } catch(NullPointerException e) {
+
+        }
         int i = thisStore.getActivity();
         switch (i){
             case -1:
